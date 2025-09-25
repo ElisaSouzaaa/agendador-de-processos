@@ -1,8 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const apiUrl = 'https://agendador-de-processos.onrender.com';
-
+const apiUrl = process.env.API_URL || 'http://localhost:8080';
 const localUrlPrefix = 'http://localhost:'; 
 
 const directoryToWalk = path.join(__dirname, 'app'); 
