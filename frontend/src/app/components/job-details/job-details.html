@@ -1,0 +1,94 @@
+<button (click)="voltar()" class="btn-voltar">← Voltar</button>
+
+<h2>Detalhes do agendamento</h2>
+
+@if (job) {
+<div class="card">
+  <h3>Informações do Agendamento</h3>
+  <p><strong>Nome: </strong>{{ job.nome }}</p>
+  <p><strong>Expressão CRON:</strong> <code>{{ job.cronExpression }}</code></p>
+  <p>
+    <strong>Status: </strong>
+    <span [ngClass]="job.status | statusJobPipe">{{ job.status | statusJobTextoPipe }}</span>
+  </p>
+</div>
+}
+
+<div class="card">
+  <h3>Arquivos Processados</h3>
+  @if (loadingArquivos) { <p>Carregando arquivos...</p> }
+  @if (!loadingArquivos && arquivos.length === 0) { <p>Nenhum arquivo processado para este agendamento.</p> }
+
+  @if (arquivos.length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Status</th>
+          <th>Nome do Arquivo</th>
+          <th>Texto do Cabeçalho</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (arquivo of arquivos; track arquivo.id) {
+          <tr [class.selecionado]="arquivo.id === arquivoSelecionadoId">
+            <td>{{ arquivo.id }}</td>
+            <td>
+              <span [ngClass]="arquivo.status | statusArquivoPipe">{{ arquivo.status }}</span>
+            </td>
+            <td>{{ arquivo.nomeArquivo | fileName}}</td>
+            <td><code>{{ arquivo.cabecalhoTexto }}</code></td>
+            <td class="acoes">
+              <button (click)="visualizarTransacoes(arquivo)" title="Visualizar Transações" class="icon-button">
+                <fa-icon [icon]="faEye"></fa-icon>
+              </button>
+              <button (click)="deletarArquivo(arquivo)" title="Excluir Arquivo" class="icon-button-delete">
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
+
+@if (arquivoSelecionadoId) {
+  <div class="card card-detalhe">
+    <h4>Transações do Arquivo #{{ arquivoSelecionadoId }}</h4>
+
+    @if (loadingTransacoes) { <p>Carregando transações...</p> }
+    
+    @if (!loadingTransacoes && transacoesVisiveis.length > 0) {
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (transacao of transacoesVisiveis; track transacao.id) {
+            <tr>
+              <td><span [ngClass]="transacao.status | statusArquivoPipe">{{ transacao.status }}</span></td>
+              <td>{{ transacao.tipo }}</td>
+              <td>{{ transacao.valor | currency: 'BRL' }}</td>
+              <td>{{ transacao.data | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ transacao.descricao }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else if (!loadingTransacoes) {
+      <p>Nenhuma transação encontrada para este arquivo.</p>
+    }
+  </div>
+}
+
+@if (error) { 
+  <p class="error">{{ error }}</p>
+}

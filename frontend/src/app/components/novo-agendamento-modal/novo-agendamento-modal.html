@@ -1,0 +1,67 @@
+<div
+  class="overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="novoAgendamentoTitle"
+>
+  <div class="modal-content" role="document">
+    <header class="modal-header">
+      <h2 id="novoAgendamentoTitle">Novo Agendamento</h2>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Fechar modal"
+        (click)="fecharModal()"
+      >
+        ×
+      </button>
+    </header>
+
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" novalidate>
+      <div class="form-group">
+        <label for="nomeJob">Nome do agendamento</label>
+        <input
+          id="nomeJob"
+          name="nome"
+          type="text"
+          [(ngModel)]="novoJob.nome"
+          required
+          #nomeModel="ngModel"
+        />
+
+        @if (nomeModel.invalid && (nomeModel.dirty || nomeModel.touched)) {
+        <div class="field-error">
+          <small>Nome é obrigatório.</small>
+        </div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="cronJob">Expressão CRON</label>
+        <input
+          id="cronJob"
+          name="cronExpression"
+          type="text"
+          [(ngModel)]="novoJob.cronExpression"
+          required
+          #cronModel="ngModel"
+        />
+
+        @if (cronModel.invalid && (cronModel.dirty || cronModel.touched)) {
+        <div class="field-error">
+          <small>Expressão CRON é obrigatória.</small>
+        </div>
+        }
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" (click)="fecharModal()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

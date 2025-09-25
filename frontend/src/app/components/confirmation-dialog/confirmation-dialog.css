@@ -1,0 +1,61 @@
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+
+.dialog-box {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  min-width: 320px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.dialog-message {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-confirm {
+  background-color: #dc3545;
+  color: white;
+}
+.btn-confirm:hover {
+  background-color: #c82333;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: white;
+}
+.btn-cancel:hover {
+  background-color: #5a6268;
+}

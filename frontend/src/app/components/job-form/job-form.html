@@ -1,0 +1,37 @@
+<form [formGroup]="form" (ngSubmit)="salvar()">
+  
+  <div class="form-group">
+    <label for="nome">Nome do Agendamento</label>
+    <input id="nome" type="text" formControlName="nome" class="form-control">
+    
+    @if (nome?.invalid && (nome?.touched || formSubmitted)) {
+      <div class="error-message">
+        @if (nome?.hasError('required')) {
+          <p>O nome é obrigatório.</p>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-group">
+    <label for="cronExpression">Expressão CRON</label>
+    <input id="cronExpression" type="text" formControlName="cronExpression" class="form-control">
+
+    @if (cronExpression?.invalid && (cronExpression?.touched || formSubmitted)) {
+      <div class="error-message">
+        @if (cronExpression?.hasError('required')) {
+          <p>A expressão CRON é obrigatória.</p>
+        }
+        @if (cronExpression?.hasError('invalidCron')) {
+          <p>O formato da expressão CRON é inválido.</p>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="loading">Salvar</button>
+    <button type="button" (click)="cancelar()">Cancelar</button>
+  </div>
+
+</form>

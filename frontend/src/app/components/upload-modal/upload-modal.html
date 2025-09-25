@@ -1,0 +1,42 @@
+<div class="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <header class="modal-header">
+      <h2 id="modalTitle">Upload de Arquivo</h2>
+      <button class="btn-close" aria-label="Fechar modal" (click)="cancelar()">&times;</button>
+    </header>
+
+    <p id="modalDesc" class="modal-description">
+      Envie um arquivo para ser processado pelo agendamento <br />
+      <strong>"{{ jobName }}"</strong>.
+    </p>
+
+    <form (submit)="submit()" novalidate>
+      <label for="fileInput" class="file-label">
+        @if (!selectedFile) {
+          <span class="file-icon">📤</span>
+          <span>Selecionar arquivo...</span>
+        } @else {
+          <span class="file-icon">📄</span>
+          <span>{{ selectedFile.name }}</span>
+        }
+        <input
+          id="fileInput"
+          type="file"
+          accept=".txt"
+          (change)="onFileChange($event)"
+          required
+        />
+      </label>
+      <small class="file-accept-info">Tipos de arquivo aceitos: .txt</small>
+      
+      @if (errorMsg) {
+        <small class="error-message">{{ errorMsg }}</small>
+      }
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-cancel" (click)="cancelar()">Cancelar</button>
+        <button type="submit" class="btn btn-upload" [disabled]="!selectedFile">Upload</button>
+      </div>
+    </form>
+  </div>
+</div>

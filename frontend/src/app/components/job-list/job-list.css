@@ -1,0 +1,168 @@
+.job-container {
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+h2 {
+  margin-left: 1rem;
+}
+
+.btn-novo {
+  margin-left: auto;
+  font-weight: bold;
+  background-color: #0b0b23;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  height: 3rem;
+}
+
+.btn-novo:hover {
+  background-color: #2b2b5f;
+}
+
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.search-container input {
+  flex: 1 1 250px;
+  max-width: 400px;
+  padding: 0.6rem 1rem;
+  border: 1.5px solid;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-container input:focus {
+  border-color: #4a4aff;
+  box-shadow: 0 0 0 3px rgba(74, 74, 255, 0.15);
+}
+
+.search-container button {
+  background-color: #0b0b23;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: ease-in 0.2s;
+  flex: 0 0 auto;
+}
+
+.search-container button:hover {
+  background-color: #2b2b5f;
+}
+
+.search-container fa-icon {
+  font-size: 1rem;
+}
+
+.job-table {
+  width: 60%;
+  height: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10rem;
+  background: white;
+  border-radius: 10px;
+  overflow-x: auto;
+  display: block;
+  box-shadow: 0 0 5px #ddd;
+}
+
+
+
+.job-table th,
+.job-table td {
+  padding-top: 50px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #dfcaca;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.job-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.job-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.job-table td button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #c00;
+  margin-top: 15px;
+  margin-left: 2rem;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+fa-icon {
+  color: #0e0e57;
+}
+
+fa-icon:hover {
+  color: gray;
+}
+
+@media (max-width: 600px) {
+  .search-container input {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .btn-novo {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .job-table {
+    font-size: 0.9rem;
+  }
+}

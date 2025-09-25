@@ -1,0 +1,11 @@
+@if (confirmationService.isVisible()) {
+  <div class="dialog-overlay">
+    <div class="dialog-box">
+      <p class="dialog-message" style="white-space: pre-wrap;">{{ confirmationService.message() }}</p>
+      <div class="dialog-buttons">
+        <button class="btn btn-cancel" (click)="confirmationService.onCancel()">Cancelar</button>
+        <button class="btn btn-confirm" (click)="confirmationService.onConfirm()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+}

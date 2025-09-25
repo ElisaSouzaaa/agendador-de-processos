@@ -1,0 +1,136 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #d8d8d8;
+  color: #333;
+}
+
+
+.status-agendado {
+  background-color: #28287c;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-processando {
+  background-color: #adc74f;
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-concluido {
+  background-color: #259e1a;
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-pendente {
+  background-color: #28287c;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-processado {
+  background-color: #259e1a;
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-concluido-com-erros {
+  background-color: #c06b09;
+  color: #333;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-erro {
+  background-color: #d32f2f;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.status-falha {
+  background-color: #d32f2f;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.error {
+  color: #c00;
+  margin-top: 15px;
+}
+
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.alert-box {
+  background-color: #f0f0f0;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+  max-width: 90%;
+  text-align: center;
+  border-top: 5px solid #0056b3;
+}
+
+.alert-message {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+.alert-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.alert-button:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,78 @@
+<div class="job-container">
+  <h2>Agendamentos</h2>
+
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="Buscar agendamento por ID..."
+      [(ngModel)]="termoBuscaArquivo"
+      (keyup.enter)="buscarArquivo()"
+    />
+    <button (click)="buscarArquivo()" title="Buscar">
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </button>
+
+    <button (click)="abrirModalNovo()" class="btn-novo">
+      + Novo Agendamento
+    </button>
+  </div>
+
+    @if (!loading && jobs.length > 0) {
+    <table class="job-table">
+      <thead>
+        <tr class="job-head">
+          <th>Nome</th>
+          <th>Expressão CRON</th>
+          <th>Status</th>
+          <th>Última Execução</th>
+          <th>Próxima Execução</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (job of jobs; track job.id) {
+        <tr class="job-body">
+          <td>{{ job.nome }}</td>
+          <td>
+            <code>{{ job.cronExpression }}</code>
+          </td>
+          <td>
+            <span
+              [ngClass]="pingPongVisual[job.id] || job.status | statusJobPipe"
+            >
+              {{ pingPongVisual[job.id] || job.status | statusJobTextoPipe }}
+            </span>
+          </td>
+          <td>{{ job.ultimaExecucao | date : "dd/MM/yyyy, HH:mm" }}</td>
+          <td>{{ job.proximaExecucao | date : "dd/MM/yyyy, HH:mm" }}</td>
+          <td class="fa-icons">
+            <button (click)="abrirModalUpload(job)" title="Upload de Arquivo">
+              <fa-icon [icon]="faUpload"></fa-icon>
+            </button>
+            <button (click)="editar(job.id)" title="Editar">
+              <fa-icon [icon]="faPen"></fa-icon>
+            </button>
+            <button (click)="detalhes(job.id)" title="Visualizar">
+              <fa-icon [icon]="faEye"></fa-icon>
+            </button>
+            <button (click)="excluir(job.id)" title="Deletar">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    } @else if (loading) {
+    <p>Carregando agendamentos...</p>
+    } @else {
+    <p class="error">{{ error }}</p>
+    }
+  </div>
+
+  @if (mostrarModalNovo) {
+  <app-novo-agendamento-modal
+    (fechar)="fecharModalNovo()"
+    (salvar)="criarAgendamento($event)"
+  ></app-novo-agendamento-modal>
+  }

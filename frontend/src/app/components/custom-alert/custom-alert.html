@@ -1,0 +1,10 @@
+@if (alertService.isVisible()) {
+  <div class="alert-overlay">
+    <div class="alert-box">
+      <p class="alert-message">{{ alertService.alertMessage() }}</p>
+      <button class="alert-button" (click)="alertService.hide()">
+        OK
+      </button>
+    </div>
+  </div>
+}
