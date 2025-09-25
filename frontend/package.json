@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build:prod": "node src/replace-api-url.js && ng build --configuration production --base-href /",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
