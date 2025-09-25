@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "render-start": "serve -s dist/agendador-frontend -l $PORT"
+    "render-start": "serve -s dist/agendador-frontend -p $PORT"
   },
   "prettier": {
     "overrides": [
