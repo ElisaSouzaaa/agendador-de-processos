@@ -38,7 +38,7 @@
     "sockjs-client": "^1.6.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0",
-    "serve": "¹4.2.3"
+    "serve": "^14.2.3"
   },
   "devDependencies": {
     "@angular/build": "^20.0.5",
