@@ -8,6 +8,6 @@
   ],
   "framework": "angular",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/agendador-frontend",
+  "outputDirectory": "/agendador-frontend",
   "rootDirectory": "frontend"
 }
