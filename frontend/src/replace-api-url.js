@@ -2,22 +2,29 @@ const fs = require('fs');
 const path = require('path');
 
 const apiUrl = 'https://agendador-de-processos.onrender.com';
-const localUrl = 'http://localhost:';
 
-const directory = path.join(__dirname, 'app');
+const localUrlPrefix = 'http://localhost:'; 
+
+const directoryToWalk = path.join(__dirname, 'app'); 
 
 function replaceInFile(filePath) {
     try {
         let content = fs.readFileSync(filePath, 'utf8');
         
-        const regexLocalhost = new RegExp(`${localUrl}\\d+`, 'g');
+        const regexLocalhostWithPort = new RegExp(`${localUrlPrefix}\\d+`, 'g');
         
-        if (content.match(regexLocalhost)) {
+        let newContent = content.replace(regexLocalhostWithPort, apiUrl);
+
+        newContent = newContent.replace(/http:\/\/localhost\//g, `${apiUrl}/`);
+
+        if (newContent !== content) {
             console.log(`Substituindo URL em: ${filePath}`);
-            content = content.replace(regexLocalhost, apiUrl);
-            fs.writeFileSync(filePath, content, 'utf8');
+            fs.writeFileSync(filePath, newContent, 'utf8');
         }
     } catch (err) {
+        if (err.code !== 'EISDIR' && err.code !== 'ENOENT') {
+            console.error(`Erro ao processar ${filePath}: ${err.message}`);
+        }
     }
 }
 
@@ -30,11 +37,15 @@ function walkDir(dir) {
             if (file !== 'node_modules' && file !== 'environments') {
                 walkDir(filePath);
             }
-        } else if (file.endsWith('.ts')) {
+        } else if (file.endsWith('.ts') || file.endsWith('.html') || file.endsWith('.js')) {
             replaceInFile(filePath);
         }
     });
 }
 
-walkDir(directory);
-console.log('Correcao de URL da API concluida.');
+if (fs.existsSync(directoryToWalk)) {
+    walkDir(directoryToWalk);
+    console.log('Correcao de URL da API concluida.');
+} else {
+    console.error(`Diretorio nao encontrado: ${directoryToWalk}`);
+}
