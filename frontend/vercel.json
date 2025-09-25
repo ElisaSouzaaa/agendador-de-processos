@@ -6,8 +6,14 @@
       "use": "@vercel/angular"
     }
   ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
   "framework": "angular",
   "buildCommand": "npm run build",
-  "outputDirectory": "/agendador-frontend",
+  "outputDirectory": "dist/agendador-frontend",
   "rootDirectory": "frontend"
 }
